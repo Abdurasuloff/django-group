@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Read - {{article.title}}
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1>{{article.title}}</h1>
+        <p>{{article.body}} </p>
+        <small class="text-muted" >
+            {% if perms.main.can_view_author %}
+             Author: @{{article.author.username}}|
+            {% endif %} 
+             {{article.created_at|timesince}} ago</small> 
+        </div>
+{% endblock content %}

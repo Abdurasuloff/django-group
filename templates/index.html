@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Index Page
+{% endblock title %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h1>Latest Articles</h1>
+    
+      {% for article in articles  %}
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+           
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title"><a class="card-link" href="{{article.get_absolute_url}}">{{article.title}}</a></h5>
+                <p class="card-text">{{article.body|truncatewords:10}}</p>
+                <p class="card-text"><small class="text-muted">{{article.created_at|timesince}} ago | @{{article.author.username}}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+   
+  </div>
+{% endblock content %}
+
+
